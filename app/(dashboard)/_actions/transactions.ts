@@ -1,12 +1,12 @@
 "use server"
 
 import prisma from "@/lib/prisma";
-import { CreateCategorySchemaType } from "@/schema/categories";
-import { CreateTransactionSchema } from "@/schema/transaction";
+
+import { CreateTransactionSchema, CreateTransactionSchemaType } from "@/schema/transaction";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export async function CreateTransaction(form: CreateCategorySchemaType) {
+export async function CreateTransaction(form: CreateTransactionSchemaType) {
     const parsedBody = CreateTransactionSchema.safeParse(form)
     if (!parsedBody.success) {
         throw new Error(parsedBody.error.message)
